@@ -5,28 +5,29 @@ interface ProductCardProps {
   product: IProduct;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
-  const trendStyles = {
-    up: "text-danger",
-    down: "text-success",
-    flat: "text-muted",
-  };
-
-  const trendIcon = {
-    up: "▲",
-    down: "▼",
-    flat: "—",
-  };
-
-  const unitLabels = {
+export const unitLabels = {
   kg: "প্রতি কেজি",
   litre: "প্রতি লিটার",
   dozen: "প্রতি ডজন",
   piece: "প্রতি পিস",
 };
 
+export const trendStyles = {
+    up: "text-danger",
+    down: "text-success",
+    flat: "text-muted",
+  };
+
+export const trendIcon = {
+    up: "▲",
+    down: "▼",
+    flat: "—",
+  };
+
+const ProductCard = ({ product }: ProductCardProps) => {
+
   return (
-    <div className="rounded-[28px] border border-stroke bg-surface p-8">
+    <div className="rounded-2xl border border-stroke bg-surface p-4">
       <div className="flex items-center gap-6">
         <div className="flex p-3 items-center justify-center rounded-2xl bg-background text-2xl">
           {product.image}

@@ -4,6 +4,7 @@ import { ICategory } from '@/types/category.type';
 import { Link } from '@heroui/react/link';
 import { BsCart4 } from 'react-icons/bs';
 import BanglaDate from './small-components/BanglaDate';
+import Ticker from './small-components/Ticker';
 
 const categoryData = await getCategories();
 
@@ -52,6 +53,7 @@ const Navbar = () => {
                         ))}
                     </ul>
                 </div>
+                <Ticker />
             </nav>
         </header>
     );
