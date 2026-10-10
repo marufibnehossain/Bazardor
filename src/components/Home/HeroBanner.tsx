@@ -11,7 +11,7 @@ const HeroBanner = () => {
                 height={334}
                 alt="Tailwind CSS hero component"
                 src='/bazar-hero.png'
-                className="max-w-100 rounded-lg max-sm:w-full"
+                className="max-w-100 rounded-lg max-sm:w-full max-sm:h-auto"
                 />
                 <div className="text-center sm:text-left w-full sm:w-1/2 flex flex-col items-start max-sm:items-center gap-5">
                     <span className='text-sm py-1 px-3 bg-[#E2F1E7] rounded-full font-bold text-primary'><BanglaDate className='text-sm font-bold text-primary' /></span>

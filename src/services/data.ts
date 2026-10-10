@@ -1,3 +1,5 @@
+import { IProduct } from "@/types/product.type";
+
 const getData = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_API_URL!);
     if (!res.ok) throw new Error("Failed to fetch data");
@@ -10,4 +12,10 @@ const getCategories = async () => {
     return res.json();
 }
 
-export { getData, getCategories };
+const getProducts = async (): Promise<IProduct[]> => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL!}/products`);
+    if (!res.ok) throw new Error("Failed to fetch data");
+    return res.json();
+}
+
+export { getData, getCategories, getProducts };
