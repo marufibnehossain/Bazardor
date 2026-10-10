@@ -10,5 +10,4 @@ const getCategories = async () => {
     return res.json();
 }
 
-export default getData; 
-export { getCategories };
+export { getData, getCategories };

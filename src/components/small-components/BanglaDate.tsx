@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-const BanglaDate = () => {
+interface BanglaDateProps {
+  className?: string;
+}
+
+const BanglaDate = ({ className }: BanglaDateProps) => {
   const [date, setDate] = useState<string>("");
 
   useEffect(() => {
@@ -21,7 +25,7 @@ const BanglaDate = () => {
     return () => window.clearTimeout(timer);
   }, []);
 
-  return <p className="text-xs text-heading">{date}</p>;
+  return <p className={className}>{date}</p>;
 };
 
 export default BanglaDate;

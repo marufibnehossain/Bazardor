@@ -17,7 +17,7 @@ const Navbar = () => {
                             <div className='p-2.5 bg-primary rounded-lg'><BsCart4 className='text-white' /></div>
                             <div>
                                 <Link href='/' className='text-xl font-bold'>বাজার দর</Link>
-                                <BanglaDate />
+                                <BanglaDate className="text-xs text-heading" />
                             </div>
                         </div>
                         <div className="dropdown dropdown-end">
