@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { unitLabels } from '@/components/Home/ProductCard';
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 

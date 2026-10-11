@@ -53,7 +53,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </p>
 
             <p className="mt-1 text-xl font-bold leading-none text-heading">
-              {product.today}{" "}
+              {new Intl.NumberFormat("bn-BD").format(product.today)}{" "}
               <span className="text-sm font-medium">টাকা</span>
             </p>
           </div>

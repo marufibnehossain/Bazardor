@@ -5,6 +5,7 @@ import { Link } from '@heroui/react/link';
 import { BsCart4 } from 'react-icons/bs';
 import BanglaDate from './small-components/BanglaDate';
 import Ticker from './small-components/Ticker';
+import ActiveLink from './small-components/ActiveLink';
 
 const categoryData = await getCategories();
 
@@ -48,7 +49,11 @@ const Navbar = () => {
                     <ul className="max-w-7xl mx-auto flex items-center justify-start gap-4 py-3 overflow-x-auto">
                         {categoryData.map((category: ICategory) => (
                             <li key={category.id}>
-                                <Link href={`/${category.slug}`}>{category.icon} {category.nameBn}</Link>
+                                <ActiveLink
+                                    slug={category.slug}
+                                    icon={category.icon}
+                                    name={category.nameBn}
+                                />
                             </li>
                         ))}
                     </ul>

@@ -8,7 +8,7 @@ import { IProduct } from '@/types/product.type';
 
 interface ProductLibraryProps {
   icon?: string;
-  title: string;
+  title?: string;
   desc?: string;
   products: IProduct[];
 }
