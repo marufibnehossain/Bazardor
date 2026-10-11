@@ -2,6 +2,7 @@ import { IProduct } from '@/types/product.type';
 import { getProducts } from '@/services/data';
 import Link from 'next/link';
 import { unitLabels } from '@/components/Home/ProductCard';
+import NotFound from '@/app/not-found';
 
 interface ProductPageProps {
   params: Promise<{
@@ -14,13 +15,16 @@ const ProductPage = async ({ params }: ProductPageProps) => {
     const { slug } = await params;
     const productData = await getProducts();
     const product = productData.find((product: IProduct) => product.slug === slug);
+    
     return (
         <div className="min-h-screen w-full px-[5vw]">
             <div className='max-w-7xl mx-auto w-full py-8'>
-                <div className='flex items-center gap-2 text-sm mb-8'>
-                    <Link href="/">হোম</Link> &gt; <Link href={`/categories/${product?.category}`}>{product?.categoryNameBn}</Link> &gt; <p>{product?.nameBn}</p>
-                </div>
+                
                 {product ? (
+                    <>
+                    <div className='flex items-center gap-2 text-sm mb-8'>
+                        <Link href="/">হোম</Link> &gt; <Link href={`/categories/${product?.category}`}>{product?.categoryNameBn}</Link> &gt; <p>{product?.nameBn}</p>
+                    </div>
                     <div className='flex flex-col gap-8'>
                         <div className="bg-surface border border-[#E1E8E1] rounded-[24px] p-5 w-full flex max-[400px]:flex-col justify-between max-[400px]:justify-center sm:items-center gap-4">
                             <div className="flex sm:items-center justify-start items-start gap-4">
@@ -116,8 +120,9 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                             </div>
                         </div>
                     </div>
+                    </>
                 ) : (
-                    <p>Product not found</p>
+                    <NotFound />
                 )}
             </div>
         </div>

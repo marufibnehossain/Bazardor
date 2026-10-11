@@ -16,7 +16,7 @@ const NotFound = () => {
 
         <Link
           href="/"
-          className="btn-global"
+          className="btn-global mt-4"
         >
           হোম পেজে ফিরে যান
         </Link>
