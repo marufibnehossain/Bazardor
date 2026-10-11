@@ -18,4 +18,10 @@ const getProducts = async (): Promise<IProduct[]> => {
     return res.json();
 }
 
-export { getData, getCategories, getProducts };
+const getProductByCategory = async (category: string): Promise<IProduct[]> => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL!}/products?category=${category}`);
+    if (!res.ok) throw new Error("Failed to fetch data");
+    return res.json();
+}
+
+export { getData, getCategories, getProducts, getProductByCategory };

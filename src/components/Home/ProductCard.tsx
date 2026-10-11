@@ -1,4 +1,5 @@
 import { IProduct } from "@/types/product.type";
+import Link from "next/link";
 import React from "react";
 
 interface ProductCardProps {
@@ -27,42 +28,44 @@ export const trendIcon = {
 const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
-    <div className="rounded-2xl border border-stroke bg-surface p-4">
-      <div className="flex items-center gap-6">
-        <div className="flex p-3 items-center justify-center rounded-2xl bg-background text-2xl">
-          {product.image}
+    <Link href={`/product/${product.slug}`} className="w-full block">
+      <div className="rounded-2xl border border-stroke bg-surface p-4">
+        <div className="flex items-center gap-6">
+          <div className="flex p-3 items-center justify-center rounded-2xl bg-background text-2xl">
+            {product.image}
+          </div>
+
+          <div>
+            <h3 className="text-base font-semibold text-heading">
+              {product.nameBn}
+            </h3>
+
+            <p className="mt-1 text-xs leading-tight text-text">
+              {unitLabels[product.unit]}
+            </p>
+          </div>
         </div>
 
-        <div>
-          <h3 className="text-base font-semibold text-heading">
-            {product.nameBn}
-          </h3>
+        <div className="mt-7 flex items-end justify-between">
+          <div>
+            <p className="text-xs text-text">
+              আজকের দাম
+            </p>
 
-          <p className="mt-1 text-xs leading-tight text-text">
-            {unitLabels[product.unit]}
-          </p>
+            <p className="mt-1 text-xl font-bold leading-none text-heading">
+              {product.today}{" "}
+              <span className="text-sm font-medium">টাকা</span>
+            </p>
+          </div>
+
+          <span
+            className={`rounded-full bg-background px-2 py-1.5 text-xs font-semibold ${trendStyles[product.change.dir]}`}
+          >
+            {trendIcon[product.change.dir]} {new Intl.NumberFormat("bn-BD").format(Math.abs(product.change.pct))}%
+          </span>
         </div>
       </div>
-
-      <div className="mt-7 flex items-end justify-between">
-        <div>
-          <p className="text-xs text-text">
-            আজকের দাম
-          </p>
-
-          <p className="mt-1 text-xl font-bold leading-none text-heading">
-            {product.today}{" "}
-            <span className="text-sm font-medium">টাকা</span>
-          </p>
-        </div>
-
-        <span
-          className={`rounded-full bg-background px-2 py-1.5 text-xs font-semibold ${trendStyles[product.change.dir]}`}
-        >
-          {trendIcon[product.change.dir]} {product.change.pct}%
-        </span>
-      </div>
-    </div>
+    </Link>
   );
 };
 

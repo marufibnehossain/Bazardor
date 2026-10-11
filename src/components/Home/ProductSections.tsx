@@ -19,7 +19,7 @@ const ProductSections = async () => {
                 <ProductLibrary products={fallingProducts} icon='▼' title='আজ দাম কমেছে' />
             </Suspense>
             <Suspense fallback={<p>Loading...</p>}>
-                <ProductLibrary products={products} title='সব পণ্য' />
+                <ProductLibrary products={products} title='সব পণ্য' desc={`মোট ${new Intl.NumberFormat("bn-BD").format(products.length)}টি পণ্য দেখানো হচ্ছে`} />
             </Suspense>
         </div>
     );

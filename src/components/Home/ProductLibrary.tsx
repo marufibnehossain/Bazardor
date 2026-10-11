@@ -9,13 +9,15 @@ import { IProduct } from '@/types/product.type';
 interface ProductLibraryProps {
   icon?: string;
   title: string;
+  desc?: string;
   products: IProduct[];
 }
 
-const ProductLibrary = ({ products, icon, title }: ProductLibraryProps) => {
+const ProductLibrary = ({ products, icon, title, desc }: ProductLibraryProps) => {
     return (
         <div className='pt-10'>
             <h2 className='sm:text-xl text-lg font-bold'><span className={`${icon === '▲' ? 'text-danger' : 'text-success'} text-base`}>{icon}</span> {title}</h2>
+            <p className='text-sm mt-3 mb-1'>{desc}</p>
 
             <div className='grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 mt-3'>
                 {products.map((product: IProduct) => (
