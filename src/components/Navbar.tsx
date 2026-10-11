@@ -6,6 +6,7 @@ import { BsCart4 } from 'react-icons/bs';
 import BanglaDate from './small-components/BanglaDate';
 import Ticker from './small-components/Ticker';
 import ActiveLink from './small-components/ActiveLink';
+import AccountMenu from './small-components/AccountMenu';
 
 const categoryData = await getCategories();
 
@@ -22,27 +23,7 @@ const Navbar = () => {
                                 <BanglaDate className="text-xs text-heading" />
                             </div>
                         </div>
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img
-                                        alt="Tailwind CSS Navbar component"
-                                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                                </div>
-                            </div>
-                            <ul
-                                tabIndex={-1}
-                                className="menu menu-sm dropdown-content bg-surface rounded-2xl z-1 mt-3 w-52 px-5 py-4 border border-stroke flex flex-col gap-3">
-                                <li>
-                                <a className="flex flex-col gap-0.5 items-start">
-                                    <h2 className='text-sm font-bold text-heading'>Rezwan Ahmed</h2>
-                                    <span className="text-xs text-heading opacity-70">rezwanahmed@gmail.com</span>
-                                </a>
-                                </li>
-                                <li><Link href="/profile">👤 আমার প্রোফাইল</Link></li>
-                                <li className='text-danger'><Link href="/logout">↩ সাইন আউট</Link></li>
-                            </ul>
-                        </div>
+                        <AccountMenu />
                     </div>
                 </div>
                 <div className='w-full px-[5vw] border-b border-background'>

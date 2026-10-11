@@ -1,0 +1,83 @@
+"use client";
+
+import { signOut, useSession } from "@/lib/auth-client";
+import { Link } from "@heroui/react/link";
+import { toast } from "react-toastify";
+import Image from "next/image";
+
+const AccountMenu = () => {
+    const { data: session } = useSession();
+
+    const handleSignOut = async () => {
+        const { error } = await signOut();
+
+        if (error) {
+            toast.error("সাইন আউট করা যায়নি");
+            return;
+        }
+
+        toast.success("সফলভাবে সাইন আউট হয়েছে");
+    };
+
+    if (!session?.user) {
+        return (
+            <div className="flex items-center gap-5">
+                <Link href="/sign-in">সাইন ইন</Link>
+                <Link href="/sign-up" className='btn-global'>সাইন আপ</Link>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex items-center gap-3">
+            <div className="dropdown dropdown-start">
+                <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                >
+                    <div className="w-10 rounded-full">
+                        <Image
+                            width={40}
+                            height={40}
+                            src={session.user.image || "/default-avatar.png"}
+                            alt={session.user.name}
+                        />
+                    </div>
+                </div>
+
+                <ul
+                    tabIndex={-1}
+                    className="menu menu-sm dropdown-content bg-surface rounded-2xl z-1 mt-3 w-52 px-5 py-4 border border-stroke flex flex-col gap-3"
+                >
+                    <li>
+                        <div className="flex flex-col items-start gap-0.5">
+                            <h2 className="text-sm font-bold text-heading">
+                                {session.user.name}
+                            </h2>
+                            <span className="text-xs text-heading opacity-70">
+                                {session.user.email}
+                            </span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <Link href="/profile">
+                            👤 আমার প্রোফাইল
+                        </Link>
+                    </li>
+
+                    <li className="text-danger">
+                        <button onClick={handleSignOut}>
+                            ↩ সাইন আউট
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <span>Welcome, {session.user.name}</span>
+        </div>
+    );
+};
+
+export default AccountMenu;
