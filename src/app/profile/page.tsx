@@ -29,8 +29,11 @@ const ProfilePage = () => {
     };
 
     if (isPending) {
-        return <p>Loading...</p>;
-    }
+        return (
+            <div className='flex justify-center items-center'>
+                <span className="loading loading-ring loading-xl"></span>
+            </div>
+    )}
 
     if (!session?.user) {
         return null;

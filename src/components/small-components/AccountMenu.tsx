@@ -4,9 +4,11 @@ import { signOut, useSession } from "@/lib/auth-client";
 import { Link } from "@heroui/react/link";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const AccountMenu = () => {
     const { data: session, isPending } = useSession();
+    const router = useRouter();
 
     const handleSignOut = async () => {
         const { error } = await signOut();
@@ -17,6 +19,7 @@ const AccountMenu = () => {
         }
 
         toast.success("সফলভাবে সাইন আউট হয়েছে");
+        router.push("/");
     };
 
     if (isPending) {
