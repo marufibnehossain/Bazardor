@@ -27,7 +27,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                     </div>
                     <div className='flex flex-col gap-8'>
                         <div className="bg-surface border border-[#E1E8E1] rounded-[24px] p-5 w-full flex max-[400px]:flex-col justify-between max-[400px]:justify-center sm:items-center gap-4">
-                            <div className="flex sm:items-center justify-start items-start gap-4">
+                            <div className="flex items-center justify-start gap-4">
                                 <div className="flex sm:px-5 sm:py-5.5 px-3 py-3.5 items-center justify-center sm:rounded-2xl rounded-lg bg-background sm:text-4xl text-3xl">
                                     {product.image}
                                 </div>
@@ -44,7 +44,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="bg-background border border-[#E1E8E1] rounded-2xl sm:px-5 sm:py-4 p-2.5 text-center">
+                            <div className="bg-background border border-[#E1E8E1] rounded-2xl sm:px-5 sm:py-4 p-2.5 text-center min-w-27">
                                 <p className="mt-1 sm:text-sm text-xs text-text">আজকের দাম</p>
                                 <h2 className="sm:text-3xl text-2xl font-bold text-heading">
                                     {new Intl.NumberFormat("bn-BD").format(product.today)}

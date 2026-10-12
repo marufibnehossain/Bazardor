@@ -61,11 +61,11 @@ const ProfilePage = () => {
                     <p className='text-sm text-text'>আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।</p>
                 </div>
                 <div className="bg-surface border border-[#E1E8E1] rounded-[24px] p-5 w-full flex max-[500px]:flex-col sm:justify-between sm:items-center gap-4">
-                    <div className="flex max-[360px]:flex-col items-center justify-start gap-4">
+                    <div className="flex max-[360px]:flex-col items-center max-[500px]:justify-center justify-start gap-4">
                         <Image
                             width={80}
                             height={80}
-                            src={session.user.image || "/default-avatar.png"}
+                            src={session.user.image || "/default-avatar.webp"}
                             alt={session.user.name}
                             className="w-14 h-14 sm:w-20 sm:h-20 object-cover sm:rounded-2xl rounded-lg"
                         />
@@ -76,7 +76,7 @@ const ProfilePage = () => {
                             <p className="mt-1 text-sm leading-tight text-text max-[360px]:text-center">{session.user.email}</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center max-[500px]:justify-center gap-4">
                         <button
                             type="button"
                             onClick={() => setShowForm(!showForm)}
