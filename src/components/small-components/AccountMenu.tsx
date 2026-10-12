@@ -50,7 +50,7 @@ const AccountMenu = () => {
                         <Image
                             width={40}
                             height={40}
-                            src={session.user.image || "/default-avatar.png"}
+                            src={session.user.image || "/default-avatar.webp"}
                             alt={session.user.name}
                         />
                     </div>
