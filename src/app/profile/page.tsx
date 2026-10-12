@@ -4,11 +4,13 @@ import Image from "next/image";
 import { useState } from "react";
 import {Button, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 
 const ProfilePage = () => {
     const { data: session, isPending } = useSession();
     const [showForm, setShowForm] = useState(false);
+    const router = useRouter();
 
     const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -26,6 +28,18 @@ const ProfilePage = () => {
         }
 
         toast.success("প্রোফাইল সফলভাবে আপডেট হয়েছে");
+    };
+    
+    const handleSignOut = async () => {
+        const { error } = await signOut();
+
+        if (error) {
+            toast.error("সাইন আউট করা যায়নি");
+            return;
+        }
+
+        toast.success("সফলভাবে সাইন আউট হয়েছে");
+        router.push("/");
     };
 
     if (isPending) {
@@ -70,7 +84,7 @@ const ProfilePage = () => {
                         >
                             {showForm ? "বন্ধ করুন" : "তথ্য আপডেট"}
                         </button>
-                        <button onClick={() => signOut()} className="py-2.5 px-4 text-sm font-semibold text-danger border border-danger rounded-lg hover:bg-danger hover:text-white transition-colors duration-300 cursor-pointer" >↩ সাইন আউট</button>
+                        <button onClick={handleSignOut} className="py-2.5 px-4 text-sm font-semibold text-danger border border-danger rounded-lg hover:bg-danger hover:text-white transition-colors duration-300 cursor-pointer" >↩ সাইন আউট</button>
                     </div>
                 </div>
 
