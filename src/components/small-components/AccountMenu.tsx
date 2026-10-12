@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 
 const AccountMenu = () => {
-    const { data: session } = useSession();
+    const { data: session, isPending } = useSession();
 
     const handleSignOut = async () => {
         const { error } = await signOut();
@@ -19,24 +19,31 @@ const AccountMenu = () => {
         toast.success("সফলভাবে সাইন আউট হয়েছে");
     };
 
+    if (isPending) {
+        return (
+            <div className='flex justify-center items-center'>
+                <span className="loading loading-ring loading-xl"></span>
+            </div>
+    )}
+
     if (!session?.user) {
         return (
-            <div className="flex items-center gap-5">
-                <Link href="/sign-in">সাইন ইন</Link>
-                <Link href="/sign-up" className='btn-global'>সাইন আপ</Link>
+            <div className="flex items-center sm:gap-5 gap-2">
+                <Link href="/sign-in" className='max-sm:text-xs'>সাইন ইন</Link>
+                <Link href="/sign-up" className='btn-global max-sm:p-2! max-sm:text-xs!'>সাইন আপ</Link>
             </div>
         );
     }
 
     return (
         <div className="flex items-center gap-3">
-            <div className="dropdown dropdown-start">
+            <div className="dropdown dropdown-end">
                 <div
                     tabIndex={0}
                     role="button"
-                    className="btn btn-ghost btn-circle avatar"
+                    className="cursor-pointer flex items-center gap-2"
                 >
-                    <div className="w-10 rounded-full">
+                    <div className="w-10 rounded-lg overflow-hidden">
                         <Image
                             width={40}
                             height={40}
@@ -44,6 +51,7 @@ const AccountMenu = () => {
                             alt={session.user.name}
                         />
                     </div>
+                    <span className='max-sm:hidden'>{session.user.name}</span>
                 </div>
 
                 <ul
@@ -74,8 +82,6 @@ const AccountMenu = () => {
                     </li>
                 </ul>
             </div>
-
-            <span>Welcome, {session.user.name}</span>
         </div>
     );
 };

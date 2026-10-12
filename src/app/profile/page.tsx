@@ -1,12 +1,14 @@
 "use client";
 import { signOut, updateUser, useSession } from "@/lib/auth-client";
 import Image from "next/image";
+import { useState } from "react";
 import {Button, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import { toast } from "react-toastify";
 
 
 const ProfilePage = () => {
     const { data: session, isPending } = useSession();
+    const [showForm, setShowForm] = useState(false);
 
     const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -57,33 +59,45 @@ const ProfilePage = () => {
                             <p className="mt-1 text-sm leading-tight text-text max-[360px]:text-center">{session.user.email}</p>
                         </div>
                     </div>
-                    <button onClick={() => signOut()} className="py-2.5 px-4 text-sm font-semibold text-danger border border-danger rounded-lg hover:bg-danger hover:text-white transition-colors duration-300 cursor-pointer" >↩ সাইন আউট</button>
-                </div>
-                <div className="bg-surface border border-[#E1E8E1] rounded-[24px] p-5 w-full flex flex-col justify-between gap-4">
-                    <h2 className="text-lg font-semibold text-heading">তথ্য</h2>
-                    <Form className="flex flex-col gap-5 p-4" onSubmit={handleUpdateProfile}>
-                        <TextField
-                            isRequired
-                            name="name"
-                            validate={(value) => {
-                            if (value.length < 3) {
-                                return "Name must be at least 3 characters";
-                            }
-                            return null;
-                            }}
+                    <div className="flex items-center gap-4">
+                        <button
+                            type="button"
+                            onClick={() => setShowForm(!showForm)}
+                            className="text-sm font-semibold text-primary cursor-pointer"
                         >
-                            <Label>নাম</Label>
-                            <Input defaultValue={session.user.name} placeholder="যেমন: রহিম উদ্দিন" />
-                            <FieldError />
-                        </TextField>
-                        <div className="flex flex-col">
-                            <Button className="btn-global w-full py-2.5!" type="submit">
-                            {/* <Check /> */}
-                            আপডেট
-                            </Button>
-                        </div>
-                    </Form>
+                            {showForm ? "বন্ধ করুন" : "তথ্য আপডেট"}
+                        </button>
+                        <button onClick={() => signOut()} className="py-2.5 px-4 text-sm font-semibold text-danger border border-danger rounded-lg hover:bg-danger hover:text-white transition-colors duration-300 cursor-pointer" >↩ সাইন আউট</button>
+                    </div>
                 </div>
+
+                {showForm && (
+                    <div className="bg-surface border border-[#E1E8E1] rounded-[24px] p-5 w-full flex flex-col justify-between gap-4">
+                        <h2 className="text-lg font-semibold text-heading">তথ্য</h2>
+                        <Form className="flex flex-col gap-5 p-4" onSubmit={handleUpdateProfile}>
+                            <TextField
+                                isRequired
+                                name="name"
+                                validate={(value) => {
+                                if (value.length < 3) {
+                                    return "Name must be at least 3 characters";
+                                }
+                                return null;
+                                }}
+                            >
+                                <Label>নাম</Label>
+                                <Input placeholder="যেমন: রহিম উদ্দিন" />
+                                <FieldError />
+                            </TextField>
+                            <div className="flex flex-col">
+                                <Button className="btn-global w-full py-2.5!" type="submit">
+                                {/* <Check /> */}
+                                আপডেট
+                                </Button>
+                            </div>
+                        </Form>
+                    </div>
+                )}
             </div>
         </div>
     );

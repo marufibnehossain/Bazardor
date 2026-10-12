@@ -19,7 +19,7 @@ const HeroBanner = () => {
                     <p className="max-sm:text-xs text-heading opacity-70">
                         চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
                     </p>
-                    <button className="btn-global mt-2">সব পণ্য দেখুন</button>
+                    <a href='#all-products' className="btn-global mt-2">সব পণ্য দেখুন</a>
                 </div>
             </div>
         </div>

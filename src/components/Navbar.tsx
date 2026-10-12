@@ -12,22 +12,22 @@ const categoryData = await getCategories();
 
 const Navbar = () => {
     return (
-        <header className='sticky top-0 z-10 w-full bg-surface'>
+        <header className='w-full bg-surface'>
             <nav className='w-full'>
                 <div className='w-full px-[5vw] border-b border-background'>
                     <div className='max-w-7xl mx-auto flex items-center  justify-between py-3'>
                         <div className='flex items-center gap-2'>
                             <div className='p-2.5 bg-primary rounded-lg'><BsCart4 className='text-white' /></div>
                             <div>
-                                <Link href='/' className='text-xl font-bold'>বাজার দর</Link>
-                                <BanglaDate className="text-xs text-heading" />
+                                <Link href='/' className='sm:text-xl text-lg font-bold hover:no-underline'>বাজার দর</Link>
+                                <BanglaDate className="sm:text-xs text-[10px] text-heading" />
                             </div>
                         </div>
                         <AccountMenu />
                     </div>
                 </div>
                 <div className='w-full px-[5vw] border-b border-background'>
-                    <ul className="max-w-7xl mx-auto flex items-center justify-start gap-4 py-3 overflow-x-auto">
+                    <ul className="max-w-7xl mx-auto flex items-center justify-start sm:gap-4 gap-2 sm:py-3 py-1 overflow-x-auto scrollbar-hide!">
                         {categoryData.map((category: ICategory) => (
                             <li key={category.id}>
                                 <ActiveLink

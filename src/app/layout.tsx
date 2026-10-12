@@ -20,7 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${hindSiliguri.variable} h-full antialiased`}
+      className={`${hindSiliguri.variable} h-full antialiased scroll-smooth`}
     >
       <body className={`${hindSiliguri.className} min-h-full flex flex-col`}>
         <Navbar />

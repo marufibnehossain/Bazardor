@@ -8,6 +8,7 @@ const db = client.db('auth-db');
 export const auth = betterAuth({
     emailAndPassword: { 
         enabled: true, 
+        // autoSignIn: false,
     },
     socialProviders: {
         google: {

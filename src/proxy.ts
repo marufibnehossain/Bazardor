@@ -7,7 +7,19 @@ export async function proxy(request: NextRequest) {
         headers: await headers()
     })
 
-    if(!session) {
+    const pathname = request.nextUrl.pathname;
+
+    const isAuthPage = ["/sign-in", "/sign-up"].includes(pathname);
+    const isProtectedPage =
+        pathname === "/profile" || pathname.startsWith("/product/");
+
+    // Logged-in users cannot access sign-in/sign-up
+    if (session && isAuthPage) {
+        return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    // Logged-out users cannot access protected pages
+    if (!session && isProtectedPage) {
         return NextResponse.redirect(new URL("/sign-in", request.url));
     }
 
@@ -15,5 +27,6 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile"], // Specify the routes the middleware applies to
+  matcher: ["/profile", "/product/:path*", "/sign-in",
+        "/sign-up"],
 };

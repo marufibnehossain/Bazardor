@@ -11,11 +11,12 @@ interface ProductLibraryProps {
   title?: string;
   desc?: string;
   products: IProduct[];
+  id?: string
 }
 
-const ProductLibrary = ({ products, icon, title, desc }: ProductLibraryProps) => {
+const ProductLibrary = ({ products, icon, title, desc, id }: ProductLibraryProps) => {
     return (
-        <div className='pt-10'>
+        <div id={id} className='pt-10'>
             <h2 className='sm:text-xl text-lg font-bold'><span className={`${icon === '▲' ? 'text-danger' : 'text-success'} text-base`}>{icon}</span> {title}</h2>
             <p className='text-sm mt-3 mb-1'>{desc}</p>
 

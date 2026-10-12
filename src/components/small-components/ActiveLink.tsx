@@ -15,13 +15,13 @@ const ActiveLink = ({ slug, icon, name }: ActiveLinkProps) => {
     return (
         <Link
             href={`/category/${slug}`}
-            className={`btn-global shadow-none! ${
+            className={`btn-global shadow-none! max-sm:py-2! max-sm:px-3! ${
                 active
                 ? "bg-primary! text-white!"
                 : "bg-transparent! text-heading! hover:bg-primary! hover:text-white!"
             }`}
             >
-            {icon} {name}
+            <span className="mr-2">{icon}</span>{name}
         </Link>
     );
 };
